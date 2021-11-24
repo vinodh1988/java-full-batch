@@ -1,4 +1,4 @@
-class Shape{
+abstract class Shape{
   protected int noOfSides;
   protected String name;
   
@@ -15,6 +15,9 @@ class Shape{
 	  System.out.println("noOfSides::"+noOfSides);
 	  System.out.println("name::"+name);
   }
+  abstract public void area();
+  
+  abstract  public void perimeter();
 }
 
 class Rectangle extends Shape{
@@ -31,22 +34,82 @@ class Rectangle extends Shape{
 		this.breadth=breadth;
 	}
 	
-	public void show(){
-		System.out.println("Length::"+length);
-		System.out.println("Breadth::"+breadth);
-	}
+
 	
 	public void display(){
 		super.display();
 		System.out.println("Length::"+length);
 		System.out.println("Breadth::"+breadth);
 	}
-}
-
-class ShapeMain{
-	public static void main(String n[]){
-		Rectangle r=new Rectangle(4,"Rectangle",23,15);
-		r.display();
-		r.show();
+	
+	public void area(){
+		System.out.println("Area:"+(length*breadth));
+	}
+	
+	public void perimeter(){
+		System.out.println("Perimeter:"+2*(length+breadth));
 	}
 }
+
+
+class Square extends Shape{
+	private int side;
+	
+	
+	public Square(){
+		
+	}
+	
+	public Square(int noOfSides,String name,int side){
+		super(noOfSides,name);
+		this.side=side;
+		
+	}
+	
+	
+	
+	public void display(){
+		super.display();
+		System.out.println("side::"+side);
+	
+	}
+	
+	public void area(){
+		System.out.println("Area:"+(side*side));
+	}
+	
+	public void perimeter(){
+		System.out.println("Perimeter:"+4*side);
+	}
+}
+class ShapeMain{
+	public static void main(String n[]){
+		
+		Shape s=new Rectangle(4,"Rectangle",89,90);
+		s.display();
+		s.area();
+		s.perimeter();
+		
+		s=new Square(4,"Square",18);
+		s.display();
+		s.area();
+		s.perimeter();
+		//s.show();
+		
+		
+			
+	}
+}
+
+/*
+
+abstract  -class
+
+   it cannot be instantiated
+   
+ abstract -method
+ 
+   the method cannot have definition
+   the clild class must override this method
+   if the child class not overriding it should make itself abstract
+ */
